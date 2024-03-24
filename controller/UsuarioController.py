@@ -15,8 +15,21 @@ class UsuarioController:
 
         @self.app.route('/usuarios', methods=['GET'])
         def listar_usuarios():
+            # Obtém todos os usuários do serviço
             usuarios = UsuarioService.obter_todos_usuarios()
-            return "Usuários: " + ", ".join([usuario.nome for usuario in usuarios])
+
+            # Converte os objetos de usuário para um formato serializável (dicionário)
+            usuarios_json = []
+            for usuario in usuarios:
+                usuario_json = {
+                    'nome': usuario.nome,
+                    'email': usuario.email
+                    # Adicione outros campos conforme necessário
+                }
+                usuarios_json.append(usuario_json)
+
+            # Retorna a lista de usuários em JSON com o código de status 200
+            return jsonify(usuarios_json), 200
 
 
         @self.app.route('/usuarios', methods=['POST'])
