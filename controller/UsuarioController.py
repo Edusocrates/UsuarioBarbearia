@@ -1,4 +1,9 @@
+from urllib import request
 from flask import render_template
+
+from model.Usuario import Usuario, db
+from repository.UsuarioRepository import UsuarioRepository
+from service.UsuarioService import UsuarioService
 
 class UsuarioController:
     def __init__(self, app):
@@ -8,10 +13,20 @@ class UsuarioController:
         def index():
             return "Hello, world!"
 
-        @self.app.route('/usuarios')
+        @self.app.route('/usuarios', methods=['GET'])
         def listar_usuarios():
-            # Aqui você pode adicionar a lógica para listar os usuários da barbearia
-            return "Lista de usuários da barbearia"
+            usuarios = UsuarioService.obter_todos_usuarios()
+            return "Usuários: " + ", ".join([usuario.nome for usuario in usuarios])
+
+
+        @self.app.route('/usuarios', methods=['POST'])
+        def criar_usuario():
+            data = request.json
+            nome = data.get('nome')
+            email = data.get('email')
+            novo_usuario = UsuarioService.criar_usuario(nome, email)
+            return f"Usuário {novo_usuario.nome} criado com sucesso"
+
 
         @self.app.route('/agendar')
         def agendar():
