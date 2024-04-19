@@ -1,9 +1,9 @@
 from urllib import request
 from flask import request, jsonify
 
-from model.Usuario import Usuario, db
-from repository.UsuarioRepository import UsuarioRepository
-from service.UsuarioService import UsuarioService
+from entities.Usuario import Usuario, db
+from adapter.repository.UsuarioRepository import UsuarioRepository  # Importando de 'adapter' ao invés de 'repository'
+from core.service.UsuarioService import UsuarioService
 
 class UsuarioController:
     def __init__(self, app):
@@ -11,7 +11,7 @@ class UsuarioController:
 
         @self.app.route('/')
         def index():
-            return "Hello, world!"
+            return "Aplicação de pé!"
 
         @self.app.route('/usuarios', methods=['GET'])
         def listar_usuarios():

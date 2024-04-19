@@ -1,4 +1,4 @@
-from model.Usuario import Usuario, db
+from entities.Usuario import Usuario, db
 
 # usuario_repository.py
 class UsuarioRepository:

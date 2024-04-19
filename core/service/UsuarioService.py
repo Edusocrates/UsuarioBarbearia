@@ -1,4 +1,4 @@
-from repository.UsuarioRepository import UsuarioRepository
+from adapter.repository.UsuarioRepository import UsuarioRepository
 
 
 class UsuarioService:

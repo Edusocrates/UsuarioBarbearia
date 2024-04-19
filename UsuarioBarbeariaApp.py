@@ -1,7 +1,7 @@
 from flask import Flask
 
-from controller.UsuarioController import UsuarioController
-from model.Usuario import db
+from adapter.controller.UsuarioController import UsuarioController
+from entities.Usuario import Usuario, db
 
 class UsuarioBarbeariaApp:
     def __init__(self):

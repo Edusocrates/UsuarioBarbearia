@@ -1,5 +1,7 @@
 {
     "python.analysis.extraPaths": [
-        "./dbConnection"
+        "./dbConnection",
+        "./core",
+        "./adapter"
     ]
 }
