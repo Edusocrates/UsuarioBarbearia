@@ -7,5 +7,5 @@ class UsuarioService:
         return UsuarioRepository.obter_todos_usuarios()
 
     @staticmethod
-    def criar_usuario(nome, email):
-        return UsuarioRepository.criar_usuario(nome, email)
+    def criar_usuario(nome, email, senha):
+        return UsuarioRepository.criar_usuario(nome, email, senha)

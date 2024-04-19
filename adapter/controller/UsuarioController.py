@@ -23,7 +23,8 @@ class UsuarioController:
             for usuario in usuarios:
                 usuario_json = {
                     'nome': usuario.nome,
-                    'email': usuario.email
+                    'email': usuario.email,
+                    'senha': usuario.senha
                     # Adicione outros campos conforme necessário
                 }
                 usuarios_json.append(usuario_json)
@@ -45,12 +46,16 @@ class UsuarioController:
             if 'nome' not in data or 'email' not in data:
                 return jsonify({"error": "O JSON deve conter campos 'nome' e 'email'"}), 400
 
+            if 'senha' not in data:
+                return jsonify({"erro": "O usuario deve criar uma senha"}), 400
+
             # Extrai os dados do JSON
             nome = data['nome']
             email = data['email']
+            senha = data['senha']
 
             # Chama o método do serviço para criar o usuário
-            novo_usuario = UsuarioService.criar_usuario(nome, email)
+            novo_usuario = UsuarioService.criar_usuario(nome, email, senha)
 
             # Retorna uma mensagem de sucesso com o nome do usuário criado
             return jsonify({"message": f"Usuário {novo_usuario.nome} criado com sucesso"}), 201
