@@ -1,8 +1,7 @@
 from urllib import request
 from flask import request, jsonify
 
-from entities.Usuario import Usuario, db
-from adapter.repository.UsuarioRepository import UsuarioRepository  # Importando de 'adapter' ao invés de 'repository'
+from entities.Usuario import db
 from core.service.UsuarioService import UsuarioService
 
 class UsuarioController:
