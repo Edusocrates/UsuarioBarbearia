@@ -60,10 +60,6 @@ class UsuarioController:
             return jsonify({"message": f"Usuário {novo_usuario.nome} criado com sucesso"}), 201
 
 
-        @self.app.route('/agendar')
-        def agendar():
-            # Aqui você pode adicionar a lógica para permitir que os usuários agendem um horário na barbearia
-            return "Página de agendamento"
 
         @self.app.route('/servicos')
         def listar_servicos():

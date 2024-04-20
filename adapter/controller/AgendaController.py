@@ -30,3 +30,30 @@ class AgendaController:
 
             # Retorna a lista de agendamentos em JSON com o código de status 200
             return jsonify(agendamentos_json), 200
+
+
+        @self.app.route('/agendar', methods=['POST'])
+        def criar_agendamento():
+            # Verifica se o conteúdo da solicitação é JSON
+            if not request.is_json:
+                return jsonify({"error": "O corpo da solicitação deve ser um JSON"}), 400
+
+            # Obtém os dados JSON do corpo da solicitação
+            data = request.json
+
+            # Verifica se os campos necessários estão presentes no JSON
+            if 'nome_cliente' not in data or 'data_agendamento' not in data or 'nome_profissional' not in data or 'servico' not in data:
+                return jsonify({"error": "O JSON deve conter campos 'nome_cliente', 'data_agendamento', 'nome_profissional' e 'servico'"}), 400
+
+            # Extrai os dados do JSON
+            nome_cliente = data['nome_cliente']
+            data_agendamento = data['data_agendamento']
+            nome_profissional = data['nome_profissional']
+            servico = data['servico']
+
+            # Chama o método do serviço para criar o agendamento
+            novo_agendamento = AgendaService.criar_agendamento(nome_cliente, data_agendamento, nome_profissional, servico)
+
+            # Retorna uma mensagem de sucesso com os detalhes do agendamento criado
+            return jsonify({"message": f"Agendamento para {novo_agendamento.nome_cliente} criado com sucesso",
+                            "id_agendamento": novo_agendamento.id_agendamento}), 201
