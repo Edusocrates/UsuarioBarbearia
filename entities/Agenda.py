@@ -5,7 +5,7 @@ from db import db
 class Agenda(db.Model):
     id_agendamento = db.Column(db.Integer, primary_key=True)
     nome_cliente = db.Column(db.String(100))
-    data_agendamento = db.Column(db.Date)
+    data_agendamento = db.Column(db.DateTime)
     nome_profissional = db.Column(db.String(100))
     servico = db.Column(db.String(100))
 

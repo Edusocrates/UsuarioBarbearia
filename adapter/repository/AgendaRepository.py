@@ -8,7 +8,7 @@ class AgendaRepository:
         return Agenda.query.all()
 
     @staticmethod
-    def criar_agendamento(nome_cliente, data_agendamento, servico, nome_profissional):
+    def criar_agendamento(nome_cliente, data_agendamento, nome_profissional, servico):
         novo_agendamento = Agenda(nome_cliente=nome_cliente, data_agendamento=data_agendamento, servico=servico, nome_profissional=nome_profissional)
         db.session.add(novo_agendamento)
         db.session.commit()
