@@ -16,7 +16,7 @@ class AgendaController:
             # Converte os objetos de agendamento para um formato serializável (dicionário)
             agendamentos_json = []
             for agendamento in agendamentos:
-                data_formatada = agendamento.data_agendamento.strftime('%d/%m/%Y')
+                data_formatada = agendamento.data_agendamento.strftime('%d/%m/%Y %H:%M:%S')
 
                 agendamento_json = {
                     'id_agendamento': agendamento.id_agendamento,
